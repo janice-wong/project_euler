@@ -7,25 +7,26 @@ def is_prime(num)
   return true
 end
 
-# (3..20).each do |number|
-#   p "is #{number} prime? #{is_prime(number)}"
-# end
-
-def factors_of_non_primes(num)
+def prime_factors_of_non_primes(num)
   factors_array = []
+  prime_factors = []
   if num.odd?
     (3..(num / 2).to_i).step(2).each do |i|
       # if divisible
       if num % i == 0
-        return factors_array if factors_array.index(i)
+        return prime_factors if factors_array.index(i)
         divisor = i
         quotient = num / i
         if divisor != quotient
           factors_array << divisor
           factors_array << quotient
+          prime_factors << divisor if is_prime(divisor)
+          prime_factors << quotient if is_prime(quotient)
         else
           factors_array << divisor
-          return factors_array
+          prime_factors << divisor if is_prime(divisor)
+          prime_factors << quotient if is_prime(quotient)
+          return prime_factors
         end
       end
     end
@@ -33,17 +34,28 @@ def factors_of_non_primes(num)
     (2..(num / 2).to_i).each do |i|
       # if divisible
       if num % i == 0
-        return factors_array if factors_array.index(i)
+        return prime_factors if factors_array.index(i)
         divisor = i
         quotient = num / i
         if divisor != quotient
           factors_array << divisor
           factors_array << quotient
+          prime_factors << divisor if is_prime(divisor)
+          prime_factors << quotient if is_prime(quotient)
         else
           factors_array << divisor
-          return factors_array
+          prime_factors << divisor if is_prime(divisor)
+          prime_factors << quotient if is_prime(quotient)
+          return prime_factors
         end
       end
     end
   end
 end
+
+# p prime_factors_of_non_primes(12)
+# p prime_factors_of_non_primes(15)
+# p prime_factors_of_non_primes(28)
+# p prime_factors_of_non_primes(30)
+# p prime_factors_of_non_primes(13195)
+p prime_factors_of_non_primes(600851475143)
