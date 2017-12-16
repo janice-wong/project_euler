@@ -1,33 +1,14 @@
-def prime?(num)
-  i = 2
-  (num-2).times do
-    if num % i == 0
-      return false
-      break
-    else
-      i += 1
-    end
+def is_prime(num)
+  # a number is prime if its only factors are are one and itself
+  return false if num % 2 == 0
+  (3..(num / 2)).each do |i|
+    return false if num % i == 0
   end
   return true
 end
 
-def factors(n)
-  the_factors = []
-  (2..(Math.sqrt(n))).each do |divisible_by|
-    if n % divisible_by == 0
-      the_factors << divisible_by
-      the_factors << (n / divisible_by)
-    end
-  end
-  return the_factors
-end
+# (3..20).each do |number|
+#   p "is #{number} prime? #{is_prime(number)}"
+# end
 
-def largest_prime(factor_array)
-
-end
-
-
-
-p factors(24)
-# p factors(13195)
-# p factors(600851475143)
+def
